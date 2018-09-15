@@ -1,0 +1,13 @@
+{
+  "name": "ionTaxi",
+  "integrations": {},
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ],
+  "pro_id": "ce41db33"
+}
