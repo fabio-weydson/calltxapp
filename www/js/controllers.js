@@ -21,7 +21,6 @@ angular.module('starter.controllers', [])
         distance: 0
     };
  
-    alert('comecou');
 
   // map height
   $scope.mapHeight = window.screen.height+50;
@@ -231,11 +230,9 @@ angular.module('starter.controllers', [])
      
    }
   // load map when the ui is loaded
-  $scope.init = function() {
-      alert('begin');
-    getUserLocation();
-    
-  }
+  google.maps.event.addDomListener(window, 'load', getUserLocation);
+
+
 
   // Show note popup when click to 'Notes to driver'
   $scope.showNotePopup = function() {
