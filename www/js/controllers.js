@@ -233,7 +233,7 @@ angular.module('starter.controllers', [])
      
    }
   // load map when the ui is loaded
-  $scope.$on('$ionicView.enter', initialize($rootScope.pos));
+  $scope.$on('$ionicView.enter', getUserLocation());
 
 
   // Show note popup when click to 'Notes to driver'
