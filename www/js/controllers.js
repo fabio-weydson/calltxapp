@@ -210,10 +210,7 @@ angular.module('starter.controllers', [])
         }  
     });
 }
-function onError(error) {
-    alert('code: ' + error.code + '\n' +
-          'message: ' + error.message + '\n' + ' high accuracy:false');
-}
+
   function getUserLocation(){
     alert('local');
          navigator.geolocation.getCurrentPosition(function(position) {
@@ -223,7 +220,10 @@ function onError(error) {
              lng: position.coords.longitude
            };
            initialize($rootScope.pos);
-         },onError);
+         },function (error) {
+            alert('code: ' + error.code + '\n' +
+                  'message: ' + error.message + '\n' + ' high accuracy:false');
+        });
    }
    
   // load map when the ui is loaded
