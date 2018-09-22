@@ -211,7 +211,7 @@ angular.module('starter.controllers', [])
     });
 }
   function getUserLocation(){
-    
+    alert('local');
        if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(function(position) {
              alert(position.coords.latitude)
