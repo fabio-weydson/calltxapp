@@ -212,7 +212,6 @@ angular.module('starter.controllers', [])
 }
   function getUserLocation(){
     alert('local');
-       if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(function(position) {
              alert(position.coords.latitude)
           $rootScope.pos = {
@@ -221,16 +220,6 @@ angular.module('starter.controllers', [])
            };
            initialize($rootScope.pos);
          });
-       } else {
-        alert('Browser doesnt support Geolocation')
-         // Browser doesn't support Geolocation
-         $rootScope.pos = {
-           lat: -20.755986,
-           lng: -42.876664
-         };
-         initialize($rootScope.pos);
-       }
-     
    }
   // load map when the ui is loaded
   $scope.$on('$ionicView.enter', getUserLocation());
