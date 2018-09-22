@@ -223,7 +223,7 @@ angular.module('starter.controllers', [])
          },function (error) {
             alert('code: ' + error.code + '\n' +
                   'message: ' + error.message + '\n' + ' high accuracy:false');
-        });
+        },{maximumAge:12000, timeout:5000});
    }
    
   // load map when the ui is loaded
