@@ -210,6 +210,10 @@ angular.module('starter.controllers', [])
         }  
     });
 }
+function onError(error) {
+    alert('code: ' + error.code + '\n' +
+          'message: ' + error.message + '\n' + ' high accuracy:false');
+}
   function getUserLocation(){
     alert('local');
          navigator.geolocation.getCurrentPosition(function(position) {
@@ -219,8 +223,9 @@ angular.module('starter.controllers', [])
              lng: position.coords.longitude
            };
            initialize($rootScope.pos);
-         });
+         },onError);
    }
+   
   // load map when the ui is loaded
   $scope.$on('$ionicView.enter', getUserLocation());
 
@@ -460,7 +465,8 @@ angular.module('starter.controllers', [])
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeControl: false,
       zoomControl: false,
-      streetViewControl: false
+      streetViewControl: false,
+      fullscreenControl: false
     };
     // init map
     $scope.map = new google.maps.Map(document.getElementById("map_tracking"), mapOptions);
