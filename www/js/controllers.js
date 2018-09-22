@@ -65,7 +65,10 @@ angular.module('starter.controllers', [])
       $scope.vehicles[i].active = (i == index);
     }
   }
- 
+  $rootScope.pos = {
+    lat: -20.755986,
+    lng: -42.876664
+  };
   function initialize(pos) {
       alert('iinit');
     $scope.markers = [];
@@ -230,7 +233,7 @@ angular.module('starter.controllers', [])
      
    }
   // load map when the ui is loaded
-  $scope.$on('$ionicView.enter', getUserLocation);
+  $scope.$on('$ionicView.enter', initialize($rootScope.pos));
 
 
   // Show note popup when click to 'Notes to driver'
