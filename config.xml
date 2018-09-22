@@ -41,9 +41,9 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-        <uses-permission name="android.permission.ACCESS_COARSE_LOCATION" />
-        <uses-permission name="android.permission.ACCESS_FINE_LOCATION" />
-        <uses-permission name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
         
     </platform>
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
