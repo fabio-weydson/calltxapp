@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
         distance: 0
     };
  
-
+    alert('comecou');
 
   // map height
   $scope.mapHeight = window.screen.height+50;
@@ -232,6 +232,7 @@ angular.module('starter.controllers', [])
    }
   // load map when the ui is loaded
   $scope.init = function() {
+      alert('begin');
     getUserLocation();
     
   }
