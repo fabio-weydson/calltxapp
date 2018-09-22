@@ -38,6 +38,11 @@
     <splash src="resources/android/splash/drawable-port-xhdpi-screen.png" density="port-xhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
+
+     <uses-permission name="android.permission.ACCESS_COARSE_LOCATION" />
+        <uses-permission name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+        
   </platform>
 
    <plugin name="cordova-plugin-device" spec="^1.1.4"/>
@@ -46,4 +51,8 @@
   <plugin name="cordova-plugin-splashscreen" spec="^4.0.3"/>
   <plugin name="cordova-plugin-statusbar" spec="^2.2.1"/>
   <plugin name="ionic-plugin-keyboard" spec="^2.2.1"/>
+   <plugin name="cordova-plugin-geolocation" spec="~4">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="This app uses your location for maps." />
+    </plugin>
+       
 </widget>
