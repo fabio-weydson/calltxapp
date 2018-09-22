@@ -3,38 +3,56 @@
   places is a $scope variable in PlacesCtrl (controllers.js)
   PlacesCtrl pull data from Places model
 -->
-<ion-view view-title="Choose your drop off">
+<ion-view view-title="Local de origem" hide-nav-bar="true">
   <ion-content>
+      <div class="bar bar-header item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Comece a digitar..." google-autocomplete-suggestion language="language" strictbounds radius="radius"  location="data.location" country-code="{{countryCode}}" on-selection="onAddressSelection(location,'origin')" ng-model="data.location.formatted_address" readonly required>
+          </label>
+          <button class="button button-clear" ng-click="data.location.formatted_address = ''" ui-sref="home">
+            Cancelar
+          </button>
+        </div>
     <ion-list>
-
-      <div class="item item-divider">Recent</div>
-
-      <ion-item class="item-icon-left" ng-repeat="place in recentPlaces" ui-sref="home">
+        <ion-item class="item-icon-left" ng-click="onAddressSelection('current_location','origin')">
+            <div class="icon text-center has-label">
+              <i class="ion-android-locate icon-small"></i>
+            
+            </div> 
+            <div>
+              <div class="bold">Meu local atual</div>
+              <span>Precisão de 50 mts</span>
+              </div>
+            </ion-item>
+    
+      <div class="item item-divider">Recente</div>
+      <ion-item class="item-icon-left" ng-repeat="place in recentPlaces.slice().reverse() | limitTo:5" ng-click="onAddressSelection(place,'origin')">
         <div class="icon text-center has-label">
           <i class="ion-ios-location-outline icon-small"></i>
           <span class="item-icon-label">
-            {{ place.distance }} km
+            {{ getDistance(place) }} km
           </span>
         </div>
 
         <div>
           <div class="bold">{{ place.name }}</div>
-          <span>{{ place.address }}</span>
+          <span>{{ place.formatted_address }}</span>
         </div>
       </ion-item>
 
-      <div class="item item-divider">Nearby</div>
+      <div class="item item-divider">Próximo a você</div>
 
-      <ion-item class="item-icon-left" ng-repeat="place in places" ui-sref="home">
+      <ion-item class="item-icon-left" ng-repeat="place in places.slice().reverse() | limitTo:5" ng-click="onAddressSelection(place,'origin')">
         <div class="icon text-center has-label">
           <i class="ion-ios-location-outline icon-small"></i>
           <span class="item-icon-label">
-            {{ place.distance }} km
+            {{ getDistance(place) }} km
           </span>
         </div>
         <div>
           <div class="bold">{{ place.name }}</div>
-          <span>{{ place.address }}</span>
+          <span>{{ place.formatted_address }}</span>
         </div>
       </ion-item>
 

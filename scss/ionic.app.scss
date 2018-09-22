@@ -4,7 +4,7 @@ in ionic's _variables.scss file.
 
 For example, you might change some of the default colors:
 
-$light:                           #fff !default;
+$light:                           #000000 !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
@@ -14,13 +14,11 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
-
 // overwrite default colors
 $balanced:                        #11c1f3 !default;
-
 // new color
 $gray:                            #898D97;
-
+ 
 // some variables
 $driverProfilePictureSize:        120px;
 
@@ -29,7 +27,26 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "../www/lib/ionic/scss/ionic";
-
+.bar-transparent {
+  position: absolute;
+      background: transparent;
+    .title {
+     display: none;
+    }
+    .nav-bar-block {
+      background: transparent;
+    }
+    .button-clear {
+      color: #636262;
+    border: 1px solid #CCC;
+    min-width: 36px;
+    background: rgba(0,0,0,0.1);
+    left:5px;
+    }
+  }
+  .scroll-content {
+    top:0 !important;
+  }
 // common style
 a {
   color: inherit;
@@ -127,8 +144,13 @@ a {
 // home page
 #map {
   width: 100%;
-}
+  min-height: 100%;
+  background: #e5e5e5 url('https://www.gatetheatre.ie/wp-content/themes/gate/images/ripple.gif') center no-repeat;
 
+}
+ion-modal-view#modal_sugest .list {
+  top:44px;
+}
 .modal-bg {
   position: absolute;
   top: 0;
@@ -138,14 +160,52 @@ a {
 
 .map-overlay {
   position: absolute;
-  top: 10px;
+  top: 44px;
   left: 3%;
   width: 94%;
-
+  background: #FFF;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px #949292;
   .item {
-    .label {
+    color: #7b7a7b;
+    padding: 6px 6px;
+    border: none;
+    font-size: 13px;
+    padding-left: 30px;
+    
+    line-height: 15px;
+    background: transparent;
+    background-size: 15px;
+    background-position: 7px center;
+    background-repeat: no-repeat;
+  span {
+    font-size: 10px;
+  }
+
+  .label {
       font-size: 0.8em;
     }
+  }
+  .icon {
+    left: 0;
+    font-size: 17px;
+    color:#565556;
+  }
+  /*
+  .departue { 
+    background-image: url('../img/bluedot-icon.png');    
+  }
+  .destination {
+    background-image: url('../img/reddot-icon.png?v=2');
+  }
+  */
+  .line {
+    border: 1px dotted #afaeae;
+    position: absolute;
+    left: 16px;
+    height: 50px;
+    top: 19px;
+    width: 2px;
   }
 }
 
@@ -154,26 +214,45 @@ a {
   bottom: 0;
   width: 100%;
   transition: 0.5s;
-
-  .button-circle {
-    position: absolute;
-    top: -25px;
-    right: 6px;
-    padding: 10px;
-    border-radius: 50%;
-    line-height: 36px;
+  background:#f8f8f8;
+  box-shadow: 1px -5px 15px #CCC;
+  color: #CCC;
+  .button {
+    display: inline-block;
+    line-height: 30px;
+    font-weight: bold;
+    color: #FFF;
+    margin: 0;
+    height: 100%;
+    text-indent: 35px;
+    position: relative;
+    border-radius: 0;
+      &:before {
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: -6px;
+        left: -2px;
+        border-style: solid;
+        border-width: 41px 0 41px 27px;
+        border-color: transparent transparent transparent #f8f8f8;
+        z-index: 0;
+    }
   }
+
+
 
   .vehicles {
     padding: 0;
     min-height: 76px;
 
     .item-vehicle {
-      color: $gray;
+      color: #a7a7a7;
 
       &.active {
         border-bottom: 4px solid $balanced;
-        color: $dark;
+        color: #7b7a7b;
       }
 
       i {
@@ -187,7 +266,8 @@ a {
     background: none;
     border-left: none;
     border-right: none;
-
+    border-top: none;
+    color: #7b7b7b;
     &.row {
       margin: -1px;
       padding: 5px 0;
@@ -217,6 +297,7 @@ a {
 
     .login-content {
       min-width: 86%;
+      max-width: 90%;
 
       .light-bg {
 
@@ -238,7 +319,10 @@ a {
 
 // places page
 .item-icon-left {
-
+  font-size: 13px;
+    padding: 10px;
+  padding-left: 54px;
+  
   .icon.has-label {
     height: 80%;
 
@@ -260,13 +344,30 @@ a {
     }
   }
 }
+@keyframes fadeIn {
+  from {
+    bottom:-200px;
+    opacity: 0;
+  }
 
+  to {
+    bottom:0;
+    opacity: 1;
+  }
+}
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+.finding-bg {
+  background: url('../img/bg-map.jpg') center no-repeat;
+}
 // finding page
 .location-animation {
   margin: 0 auto;
   width: 240px;
   height: 240px;
-  background: #009B54;
+  background: url('../img/ripple.gif') center no-repeat;
 
   i {
     margin-top: 100px;
@@ -276,8 +377,11 @@ a {
 
 .list-drivers {
   .item {
-    margin-bottom: 5px;
-    border-radius: 3px;
+    margin-bottom: 9px;
+    border-radius: 9px;
+    font-size: 13px;
+    padding: 12px 10px;
+    box-shadow: 0px 0px 5px #9a9999;
   }
 }
 
@@ -321,11 +425,10 @@ a {
 
 // tracking page
 .tracking-info {
-  position: absolute;
-  bottom: 0;
+ 
   padding-left: 66px;
   width: 100%;
-
+  min-height: 70px; 
   .icon {
     left: 5px;
     margin-top: 5px;
@@ -334,7 +437,6 @@ a {
   }
 
   .item-content {
-    position: relative;
     padding-right: 80px;
 
     .action-icons {

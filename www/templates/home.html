@@ -2,71 +2,99 @@
   This template loads for the 'home' state (app.js)
   Show list of shortcuts to other screens
 -->
-<ion-view view-title="ionTaxi" ng-init="init()">
-  <ion-content scroll="false">
+<ion-view view-title="CallTaxi" ng-init="init()" >
+  <ion-content scroll="false" has-header="false">
     <!-- Show map here -->
     <div id="map" ng-style="{height: mapHeight + 'px'}"></div>
 
-    <div class="modal-bg black-transparent" ng-show="showModalBg"></div>
+    <div class="modal-bg black-transparent" ng-show="showModalBg" ui-sref="home"></div>
 
-    <div class="map-overlay list">
-      <div class="item" ui-sref="places">
-        <span class="label gray">PICK-UP</span>
-        <div class="bold">Hanoi university of technology</div>
+    <div class="map-overlay list" ng-show="showPlaces">
+      <div class="item departue item-icon-left" ui-sref="places" ng-if="destination.formatted_address">
+        <i class="icon ion-person"></i>
+        <span class="label gray">Ponto de partida</span>
+        <div class="bold">{{departue.name}}</div>
+        <span>{{ departue.formatted_address }}</span>
       </div>
-      <div class="item" ui-sref="places">
-        <span class="label gray">DROP-OFF</span>
-        <div class="italic">Choose your drop-off</div>
+      <div class="item destination item-icon-left" ui-sref="places_destination">
+          <i class="icon ion-ios-location"></i>
+        <span class="label gray">Destino</span>
+        <div class="bold" ng-if="destination.formatted_address">{{destination.name}}</div>
+        <div class="talic" ng-if="!destination.formatted_address">{{destination.name}}</div>
+        <span>{{ destination.formatted_address }}</span>
       </div>
     </div>
 
     <!-- Booking information -->
-    <div class="booking-info">
-      <div class="button-circle button-next balanced-bg light" ng-hide="showForm" ng-click="toggleForm()">NEXT</div>
+    <div class="booking-info" ng-class="{'slide-in-up' : !rota_ok}">
 
-      <div class="padding" ng-class="{'stable-bg': !showForm, 'light': showForm}">Choose your drop-off above</div>
-
-      <div class="vehicles row text-center" ng-hide="showForm">
+      <div class="item item-icon-left item-icon-right">
+        <i class="icon ion-clock"></i>
+       
+          <div>Estimativas até o destino</div>
+          <span class="bold">{{route_distance}} - {{route_eta}}</span>
+       
+      </div>
+      <div class="item item-icon-left tracking-info "  ng-show="tracking">
+          <img class="circle icon" src="img/thumb/adam.jpg" alt=""/>
+          <div class="item-content">
+            <div>
+              <strong>{{ driver.plate }}</strong>
+              <div>{{ driver.name }}</div>
+            </div>
+            <div class="action-icons">
+              <i class="ion-ios-telephone gray"></i>
+              <i class="ion-chatboxes gray"></i>
+            </div>
+          </div>
+        </div>
+      <div class="vehicles row text-center" ng-hide="tracking">
 
         <div class="col item-vehicle" ng-repeat="vehicle in vehicles" ng-class="{'active': vehicle.active}" ng-click="toggleVehicle($index)">
           <i class="{{ vehicle.icon }}"></i>
           <span>{{ vehicle.name }}</span>
         </div>
+        <div class="col col-50">
+          <button class="button button-block button-next balanced-bg light" ng-hide="tracking" ng-click="book()">SOLICITAR</button>
+      </div> 
       </div>
+      
+      <div  class="button button-block assertive-bg light" ng-show="tracking" ng-click="cancel()">CANCELAR</div>
+
 
       <div class="booking-form list padding-left padding-right stable-bg" ng-show="showForm">
 
-        <div class="item item-icon-left item-icon-right">
+         <!-- <div class="item item-icon-left item-icon-right">
           <i class="icon ion-cash"></i>
           <div ui-sref="payment_method">
-            <div>Payment</div>
-            <span class="bold">Cash</span>
+            <div>Pagamento</div>
+            <span class="bold">Dinheiro</span>
           </div>
           <i class="icon ion-arrow-right-b gray"></i>
         </div>
 
-        <div class="item row">
+      <div class="item row">
           <div class="col button button-light">
-            Pick-up Now
+            Viajar agora
           </div>
           <div class="col button">
-            Pick-up Later
+            Viajar Depois
           </div>
-        </div>
+        </div> 
 
         <div class="item item-icon-left" ng-click="showNotePopup()">
           <i class="icon ion-ios-compose-outline"></i>
-          <span class="italic dark" ng-hide="note">Notes to driver</span>
+          <span class="italic dark" ng-hide="note">Observações ao motorista</span>
           <span class="dark" ng-show="note">{{ note }}</span>
         </div>
 
         <div class="item item-icon-left" ng-click="showPromoPopup()">
           <i class="icon ion-pricetag"></i>
-          <span class="italic dark" ng-hide="promo">Promo Code</span>
+          <span class="italic dark" ng-hide="promo">Cupom</span>
           <span class="dark"  ng-show="promo">{{ promo }}</span>
         </div>
-
-        <div class="button button-balanced button-block" ng-click="book()">BOOK</div>
+-->
+        <div class="button button-balanced button-block" ng-click="book()">Confirmar</div>
 
       </div>
     </div>

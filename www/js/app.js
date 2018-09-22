@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ion-google-autocomplete'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -43,6 +43,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('places', {
     url: '/places',
     templateUrl: 'templates/places.html',
+    controller: 'PlacesCtrl'
+  })
+
+
+  // Search for a place
+  .state('places_destination', {
+    url: '/places_destination',
+    templateUrl: 'templates/places_destination.html',
     controller: 'PlacesCtrl'
   })
 

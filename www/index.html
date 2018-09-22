@@ -19,7 +19,8 @@
 
 
     <!-- google maps javascript -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6GBLGPrbPniU8HN7J4Dz5YytYpXnDS9w"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places,drawing,distancematrix&key=AIzaSyB6GBLGPrbPniU8HN7J4Dz5YytYpXnDS9w"></script>
+    <script src="lib/ion-google-autocomplete/dist/ion-google-autocomplete.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -32,10 +33,10 @@
 
       <!-- Center content -->
       <ion-side-menu-content>
-        <ion-nav-bar class="bar-balanced" align-title="center">
+        <ion-nav-bar class="bar-transparent" align-title="center">
           <!-- Back button -->
           <ion-nav-back-button>
-            Back
+            
           </ion-nav-back-button>
 
           <!-- Burger button -->
@@ -58,7 +59,7 @@
           <div class="balanced-bg text-center padding">
             <a ui-sref="profile">
               <img class="profile-picture circle" menu-close="" src="img/thumb/adam.jpg">
-              <h5 class="light">Adam Lambert</h5>
+              <h5 class="light">José Alberto</h5>
             </a>
           </div>
 
@@ -71,23 +72,23 @@
 
             <div class="item item-icon-left" ui-sref="history">
               <i class="icon ion-android-time"></i>
-              History
+              Minhas viagens
             </div>
 
             <div class="item item-icon-left" ui-sref="notification">
               <i class="icon ion-android-notifications"></i>
-              Notification
+              Notificações
               <span class="badge badge-assertive">2</span>
             </div>
 
             <div class="item item-icon-left" ui-sref="support">
               <i class="icon ion-ios-help-outline"></i>
-              Support
+              Suporte
             </div>
 
             <div class="item item-icon-left" ui-sref="login">
               <i class="icon ion-log-out"></i>
-              Logout
+              Sair
             </div>
           </div>
 

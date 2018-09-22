@@ -1,46 +1,16 @@
 angular.module('starter.services', [])
 
-.factory('Places', function () {
-  var places = [
-    {
-      name: "Bach Mai hospital",
-      address: "Giai Phong street, Hanoi, Vietnam",
-      distance: 1
-    },
-    {
-      name: "Vietnam - France hospital",
-      address: "Phuong Mai street, Hanoi, Vietnam",
-      distance: 1.2
-    },
-    {
-      name: "Pico plaza",
-      address: "No 02 Truong Chinh street, Hanoi, Vietnam",
-      distance: 1.3
-    },
-    {
-      name: "Pho Vong",
-      address: "Pho Vong street, Hanoi, Vietnam",
-      distance: 1.4
-    },
-    {
-      name: "iMobile",
-      address: "Pho Vong street, Hanoi, Vietnam",
-      distance: 1.5
-    }
-  ];
+.factory('Places', function ($rootScope) {
+  
+  var places = JSON.parse(localStorage.getItem('recents'));
 
-  var recent = [
-    {
-      name: "Pho Vong",
-      address: "Pho Vong street, Hanoi, Vietnam",
-      distance: 1.4
-    },
-    {
-      name: "iMobile",
-      address: "Pho Vong street, Hanoi, Vietnam",
-      distance: 1.5
-    }
-  ];
+  if(places!=null) {
+    $rootScope.places = places;
+  } else {
+    $rootScope.places = [];
+    localStorage.setItem('recents',angular.toJson($rootScope.places));
+  }
+  
 
   return {
     all: function () {
@@ -58,7 +28,19 @@ angular.module('starter.services', [])
       return null;
     },
     recent: function () {
-      return recent;
+      return places;
+    },
+    add: function(place){
+      if ($rootScope.places.some(function (item) { return item.place_id == place.place_id; })) { 
+        console.log('existe');
+      } else {
+        $rootScope.places.push(place);
+      }
+      this.save();
+    },
+    save: function(){
+      localStorage.setItem('recents', angular.toJson($rootScope.places));
+        this.all();
     }
   };
 })
@@ -67,35 +49,35 @@ angular.module('starter.services', [])
   var drivers = [
     {
       id: 1,
-      name: "Edward Thomas",
-      plate: "29A578.89",
-      brand: "Kia Morning",
-      distance: 0.6,
+      name: "João Paulo",
+      plate: "GCI-3344",
+      brand: "Kia Picanto",
+      distance: 2.8,
       status: "Bidding"
     },
     {
       id: 2,
-      name: "Denis Suarez",
-      plate: "29A578.89",
-      brand: "Kia Morning",
-      distance: 0.6,
-      status: "Contacting"
+      name: "Denise Soares",
+      plate: "CIO 4632",
+      brand: "Peugeot 206",
+      distance: 3,
+      status: "Contactando"
     },
     {
       id: 3,
-      name: "Karim Benzema",
-      plate: "29A578.89",
-      brand: "Kia Morning",
+      name: "Karine Bezerra",
+      plate: "HJK 1321",
+      brand: "Toyota Corolla",
       distance: 0.6,
-      status: "Contacting"
+      status: "Contactando"
     },
     {
       id: 4,
-      name: "Martin Montoya",
-      plate: "29A578.89",
-      brand: "Kia Morning",
-      distance: 0.6,
-      status: "Contacting"
+      name: "Rogério Silva",
+      plate: "PSD 2331",
+      brand: "Fiat Palio",
+      distance: 1.2,
+      status: "Contactando"
     },
   ];
 

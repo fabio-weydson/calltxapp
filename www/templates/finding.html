@@ -4,20 +4,21 @@
   drivers is a $cope variable in FindingCtrl (controllers.js)
   FindingCtrl pull data from Drivers service (services.js)
 -->
-<ion-view view-title="Finding you a driver" ng-init="init()">
-  <ion-content class="balanced-bg" scroll="false">
+<ion-view view-title="Localizando seu motorista" ng-init="init()" >
+  <ion-content class="finding-bg" scroll="false" >
 
     <!-- Green circle with marker icon in the center -->
     <div class="padding text-center">
       <div class="location-animation circle">
-        <i class="ion ion-location light"></i>
+        <i class="ion ion-model-s"></i>
       </div>
+      <h4 class="fadeIn">Localizando seu motorista</h4>
     </div>
 
-    <div class="list list-drivers padding">
-      <div class="item" ng-repeat="driver in drivers">
-        <span>{{ driver.name }}</span>
-        <span class="pull-right">{{ driver.status }}...</span>
+    <div class="list list-drivers padding fadeIn">
+      <div class="item" ng-repeat="driver in drivers | limitTo:5 | orderBy:'distance'">
+        <strong>{{ driver.name }}</strong>
+        <span class="pull-right">há {{ driver.distance }} km</span>
       </div>
     </div>
   </ion-content>
