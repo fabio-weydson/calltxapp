@@ -3,20 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="
-default-src 'self' data: gap:
-    *;
-script-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-style-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-media-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-img-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-connect-srv 'self' 'unsafe-inline' 'unsafe-eval'
-    *
-">
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+    img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+    style-src  'self' 'unsafe-inline' *">
     <title></title>
 
     <!-- vehicle icons-->
@@ -33,7 +22,7 @@ connect-srv 'self' 'unsafe-inline' 'unsafe-eval'
 
 
     <!-- google maps javascript -->
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places,drawing,distancematrix&key=AIzaSyB6GBLGPrbPniU8HN7J4Dz5YytYpXnDS9w"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places,drawing,distancematrix&key=AIzaSyCCUxAHI8nTCr5JbbXUDLXODeEkda_zMn0"></script>
     <script src="lib/ion-google-autocomplete/dist/ion-google-autocomplete.js"></script>
 
     <!-- your app's js -->

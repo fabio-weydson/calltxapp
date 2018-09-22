@@ -20,6 +20,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','i
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    plugin.google.maps.environment.setEnv({
+      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCCUxAHI8nTCr5JbbXUDLXODeEkda_zMn0',
+      'API_KEY_FOR_BROWSER_DEBUG': '' // If key is empty or unset,
+                                      // the maps plugin runs under the development mode.
+    });
   });
 })
 
