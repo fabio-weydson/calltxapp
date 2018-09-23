@@ -4,6 +4,7 @@
   "description": "ionTaxi: An Ionic project",
   "license": "Apache-2.0",
   "dependencies": {
+    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-googlemaps": "^2.4.4",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
@@ -33,7 +34,8 @@
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "...",
         "API_KEY_FOR_IOS": "..."
-      }
+      },
+      "cordova-plugin-geolocation": {}
     }
   }
 }
