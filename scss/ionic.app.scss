@@ -119,10 +119,23 @@ a {
 
 // side menu
 .menu-left {
+
+    background: #1b1f24;
   img.profile-picture {
     width: 7em;
     height: 7em;
     margin-top: 0.75em;
+  }
+  .item {
+    background: transparent;
+    text-align: center;
+    font-size: 18px;
+    color: #FFF;
+    border: none;
+    font-weight: bold;
+  }
+  .big {
+    font-size: 40px;
   }
 }
 

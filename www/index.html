@@ -35,7 +35,7 @@
     <ion-side-menus>
 
       <!-- Center content -->
-      <ion-side-menu-content>
+      <ion-side-menu-content edge-drag-threshold="" drag-content="false" >
         <ion-nav-bar class="bar-transparent" align-title="center">
           <!-- Back button -->
           <ion-nav-back-button>
@@ -59,7 +59,7 @@
         <ion-content>
 
           <!-- User profile -->
-          <div class="balanced-bg text-center padding">
+          <div class="dark-bg text-center padding">
             <a ui-sref="profile">
               <img class="profile-picture circle" menu-close="" src="img/thumb/adam.jpg">
               <h5 class="light">José Alberto</h5>
@@ -68,34 +68,25 @@
 
           <!-- Menu -->
           <div class="list" menu-close="">
-            <div class="item item-icon-left" ui-sref="home">
-              <i class="icon ion-ios-home-outline"></i>
+            <div class="item" ui-sref="home">
               Home
             </div>
 
-            <div class="item item-icon-left" ui-sref="history">
-              <i class="icon ion-android-time"></i>
+            <div class="item" ui-sref="history">
               Minhas viagens
             </div>
 
-            <div class="item item-icon-left" ui-sref="notification">
-              <i class="icon ion-android-notifications"></i>
+            <div class="item" ui-sref="notification">
               Notificações
               <span class="badge badge-assertive">2</span>
             </div>
 
-            <div class="item item-icon-left" ui-sref="support">
-              <i class="icon ion-ios-help-outline"></i>
-              Suporte
+            <div class="item" ui-sref="support">
+              Suporte online
             </div>
-            <div class="item item-icon-left" ui-sref="tracking">
-                <i class="icon ion-ios-help-outline"></i>
-                tracking
-              </div>
-
-            <div class="item item-icon-left" ui-sref="login">
-              <i class="icon ion-log-out"></i>
-              Sair
+            <div class="item" ui-sref="login">
+              <i class="icon big ion-ios-close-outline"></i>
+              
             </div>
           </div>
 
