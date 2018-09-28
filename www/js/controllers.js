@@ -1,25 +1,48 @@
 angular.module('starter.controllers', [])
 
 // Home controller
-.controller('HomeCtrl', function($scope, $stateParams, $state, $rootScope, $ionicPopup, $timeout, $ionicHistory) {
-  
-    $rootScope.pos = {};
+.controller('HomeCtrl', function($scope, $state, $rootScope, $ionicPopup, $timeout) {
+
+    $scope.stars = [0, 0, 0, 0, 0];
+    $rootScope.pos = {};    
+    $scope.drive_tta = '3 minutos'; 
+    $rootScope.driver_active = false;
     $scope.showPlaces = false;
-    $rootScope.departue = {
-        place_id: 0,
-        name: "Minha localização atual",
-        formatted_address: "",
-        LatLng: '',
-        distance: 0
+    
+    $scope.cancel = function () {
+        $rootScope.driver_active = false;
+        $rootScope.tracking = false;
+        // go to tracking state
+        location.reload();
     };
 
-    $rootScope.destination = {
-        place_id: 1,
-        name: "Para onde deseja ir?",
-        formatted_address: "",
-        LatLng: '',
-        distance: 0
-    };
+    $scope.default_places = function(){
+        $rootScope.departue = {
+            place_id: 0,
+            name: "Minha localização atual",
+            formatted_address: "",
+            LatLng: '',
+            distance: 0
+        };
+    
+        $rootScope.destination = {
+            place_id: 1,
+            name: "Para onde deseja ir?",
+            formatted_address: "",
+            LatLng: '',
+            distance: 0
+        };
+    }
+    
+    
+    $scope.default_places();
+    $scope.mudaDestino = function(e){
+        if($rootScope.tracking) {
+            alert("Cancele a corrida antes de inserir outro destino.");
+        } else {
+            $state.go('places_destination');
+        }
+    }
  
 
   // map height
@@ -138,24 +161,21 @@ angular.module('starter.controllers', [])
 
     //$scope.mapHeight = viewHeight - infoHeight + bookingHeight;
     
-      
-    if($stateParams.trace_route=='yes') {
-    
-    }
 
   }
-  //$rootScope.tracking = true;
   if($rootScope.tracking==true){
     if(($rootScope.departue.LatLng)&&($rootScope.destination.LatLng)) {
         calcRoute();
       }
   }
+ 
+
   $scope.$watchGroup(['departue', 'destination'], function() {
     if(($rootScope.departue.LatLng)&&($rootScope.destination.LatLng)) {
       calcRoute();
     }
   });
-
+  
   function calcRoute() {
       // First, remove any existing markers from the map. 
       $scope.map.pv.removeAllMarkers();
@@ -198,6 +218,7 @@ angular.module('starter.controllers', [])
         destination: $rootScope.destination.LatLng,
         travelMode: google.maps.TravelMode.DRIVING
     };
+  
     $scope.directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
           $scope.directionsDisplay.setDirections(response);
@@ -210,9 +231,25 @@ angular.module('starter.controllers', [])
             alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
         }  
     });
+    
 }
-
+    $scope.$on('$ionicView.enter', function(){
+        console.log($rootScope.tracking)
+        if($rootScope.tracking==true) {
+            $timeout(function(){
+                console.log('sadsad')
+              $scope.showRating();
+            },5000)
+            }
+       
+    /* if($rootScope.tracking==true){
+            var driver_position = new google.maps.LatLng($rootScope.driver_active.location);
+            console.log(driver_position);
+            new google.maps.Marker({position:driver_position, map:$scope.map, icon:'img/driver-icon.png'});
+        } */
+    });
   function getUserLocation(){
+     
          navigator.geolocation.getCurrentPosition(function(position) {
              
              $scope.my_location = true;
@@ -221,12 +258,16 @@ angular.module('starter.controllers', [])
              lng: position.coords.longitude
            };
            initialize($rootScope.pos);
+           
          },function (error) {
+            console.log(error.message)
             $scope.my_location = false;
+            alert("Não foi possivel obter sua localização. Certifique-se de ligar seu GPS.")
             $rootScope.pos = {
                 lat: -20.755986,
                 lng: -42.876664
               };
+              initialize($rootScope.pos);
         },{enableHighAccuracy: true, maximumAge:0, timeout:5000});
    }
    
@@ -296,12 +337,41 @@ angular.module('starter.controllers', [])
 
   // go to next view when the 'Book' button is clicked
   $scope.book = function() {
-    // hide booking form
-    //$scope.toggleForm();
-    // go to finding state
     $state.go('finding');
-    //$state.go('tracking');
   }
+
+  $scope.showRating = function() {
+
+    $scope.data = {
+      stars: $scope.stars
+    }
+
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      templateUrl: 'templates/popup-rating.html',
+      title: 'Obrigado!',
+      scope: $scope,
+      buttons: [
+        {
+          text: '<b>Avaliar</b>',
+          type: 'button-balanced',
+          onTap: function(e) {
+            if (!$scope.data.stars) {
+              //don't allow the user to close unless he enters note
+              e.preventDefault();
+            } else {
+              return $scope.data.stars;
+            }
+          }
+        },
+      ]
+    });
+    myPopup.then(function(res) {
+      // save rating here
+      $scope.cancel();
+    });
+  }
+
 })
 
 // Places Controller
@@ -431,110 +501,24 @@ angular.module('starter.controllers', [])
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
+
   // go to tracking screen
   $scope.track = function () {
+    $rootScope.driver_active = $scope.driver;
     $rootScope.tracking = true;
     // go to tracking state
     $state.go('home', null, {
         location: 'replace'
     })
   };
-})
-
-// Tracking controller
-.controller('TrackingCtrl', function($scope, Drivers, $state, $ionicHistory, $ionicPopup) {
-  // map object
-  $scope.map = null;
-
-  // map height
-  $scope.mapHeight = 360;
-
-  // get driver profile
-  // change driver id here
-  $scope.driver = Drivers.get(1);
-
-  // ratings stars
-  $scope.stars = [0, 0, 0, 0, 0];
-
-  function initialize() {
-    // set up begining position
-    
-  
-    var myLatlng = new google.maps.LatLng(21.0227358,105.8194541);
-
-    // set option for map
-    var mapOptions = {
-      center: myLatlng,
-      zoom: 17,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      mapTypeControl: false,
-      zoomControl: false,
-      streetViewControl: false,
-      fullscreenControl: false
+  $scope.cancel = function () {
+    $rootScope.driver_active = false;
+    $rootScope.tracking = false;
+    // go to tracking state
+    $state.go('home', null, {
+        location: 'replace'
+    })
     };
-    // init map
-    $scope.map = new google.maps.Map(document.getElementById("map_tracking"), mapOptions);
- 
-    // get ion-view height
-    var viewHeight = window.screen.height - 44; // minus nav bar
-    // get info block height
-    var infoHeight = document.getElementsByClassName('tracking-info')[0].scrollHeight;
-
-    $scope.mapHeight = viewHeight - infoHeight;
-  }
-
-  function showRating() {
-    $scope.data = {
-      stars: $scope.stars
-    }
-
-    // An elaborate, custom popup
-    var myPopup = $ionicPopup.show({
-      templateUrl: 'templates/popup-rating.html',
-      title: 'Thank you',
-      scope: $scope,
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: '<b>Submit</b>',
-          type: 'button-balanced',
-          onTap: function(e) {
-            if (!$scope.data.stars) {
-              //don't allow the user to close unless he enters note
-              e.preventDefault();
-            } else {
-              return $scope.data.stars;
-            }
-          }
-        },
-      ]
-    });
-    myPopup.then(function(res) {
-      // save rating here
-
-      // go to home page
-      $ionicHistory.nextViewOptions({
-        disableBack: true
-      });
-      $state.go('home');
-    });
-  }
-
-  $scope.$on('$ionicView.enter', function() {
-
-  });
-
-  // load map when the ui is loaded
-  $scope.init = function() {
-    setTimeout(function() {
-      initialize();
-    }, 200);
-
-    // finish trip
-    setTimeout(function() {
-      //showRating();
-    }, 1000)
-  }
 })
 
 // History controller

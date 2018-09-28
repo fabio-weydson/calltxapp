@@ -27,13 +27,17 @@
           <strong>{{ driver.plate }}</strong>
         </div>
 
-        <div class="col">
+        <div class="col veiculo">
           <div class="text-hint">Veículo</div>
           <strong>{{ driver.brand }}</strong>
         </div>
       </div>
+      <h5 class="padding dark">Espere em uma via pública para que o motorista possa te encontrar.</h5>
 
-      <div class="button button-balanced button-block" ng-click="track()">AVANÇAR</div>
+      <div class="driver-opt">
+        <div class="button button-balanced button-block" ng-click="track()">AVANÇAR</div>
+        <div class="button button-clear button-block" ng-click="cancel()">CANCELAR</div>
+      </div>
     </div>
 
   </ion-content>

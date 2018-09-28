@@ -52,6 +52,7 @@ angular.module('starter.services', [])
       name: "João Paulo",
       plate: "GCI-3344",
       brand: "Kia Picanto",
+      location: "-20.753929, -42.874088",
       distance: 2.8,
       status: "Bidding"
     },
@@ -60,6 +61,7 @@ angular.module('starter.services', [])
       name: "Denise Soares",
       plate: "CIO 4632",
       brand: "Peugeot 206",
+      location: "-20.753929, -42.874088",
       distance: 3,
       status: "Contactando"
     },
@@ -68,6 +70,7 @@ angular.module('starter.services', [])
       name: "Karine Bezerra",
       plate: "HJK 1321",
       brand: "Toyota Corolla",
+      location: "-20.753929, -42.874088",
       distance: 0.6,
       status: "Contactando"
     },
@@ -76,6 +79,7 @@ angular.module('starter.services', [])
       name: "Rogério Silva",
       plate: "PSD 2331",
       brand: "Fiat Palio",
+      location: "-20.753929, -42.874088",
       distance: 1.2,
       status: "Contactando"
     },

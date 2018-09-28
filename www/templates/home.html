@@ -9,14 +9,14 @@
 
     <div class="modal-bg black-transparent" ng-show="showModalBg" ui-sref="home"></div>
 
-    <div class="map-overlay list" ng-show="showPlaces">
-      <div class="item departue item-icon-left" ui-sref="places" ng-if="destination.formatted_address">
+    <div class="map-overlay list" ng-show="showPlaces" >
+      <div class="item departue item-icon-left" ui-sref="places" ng-if="destination.formatted_address" ng-hide="tracking">
         <i class="icon ion-person"></i>
         <span class="label gray">Ponto de partida</span>
         <div class="bold">{{departue.name}}</div>
         <span>{{ departue.formatted_address }}</span>
       </div>
-      <div class="item destination item-icon-left" ui-sref="places_destination">
+      <div class="item destination item-icon-left" ng-click="mudaDestino()">
           <i class="icon ion-ios-location"></i>
         <span class="label gray">Destino</span>
         <div class="bold" ng-if="destination.formatted_address">{{destination.name}}</div>
@@ -31,20 +31,20 @@
       <div class="item item-icon-left item-icon-right">
         <i class="icon ion-clock"></i>
        
-          <div>Estimativas até o destino</div>
-          <span class="bold">{{route_distance}} - {{route_eta}}</span>
+          <div>Estimativa até o destino</div>
+          <span class="bold" ng-bind-html="(route_distance) + ' - ' + (route_eta)">Carregando</span>
        
       </div>
       <div class="item item-icon-left tracking-info "  ng-show="tracking">
           <img class="circle icon" src="img/thumb/adam.jpg" alt=""/>
           <div class="item-content">
-            <div>
-              <strong>{{ driver.plate }}</strong>
-              <div>{{ driver.name }}</div>
+            <div class="driver">
+              <strong>Placa: {{ driver_active.plate }}</strong>
+              <div>{{ driver_active.name }}</div>
             </div>
             <div class="action-icons">
-              <i class="ion-ios-telephone gray"></i>
-              <i class="ion-chatboxes gray"></i>
+             <i class="ion-ios-telephone calm"></i>
+            <i class="ion-chatboxes calm"></i>
             </div>
           </div>
         </div>
@@ -55,11 +55,11 @@
           <span>{{ vehicle.name }}</span>
         </div>
         <div class="col col-50">
-          <button class="button button-block button-next balanced-bg light" ng-hide="tracking" ng-click="book()">SOLICITAR</button>
+          <button class="button button-block button-next balanced-bg light book" ng-hide="tracking" ng-click="book()">SOLICITAR</button>
       </div> 
       </div>
       
-      <div  class="button button-block assertive-bg light" ng-show="tracking" ng-click="cancel()">CANCELAR</div>
+      <div  class="button button-block button-assertive cancel" ng-show="tracking" ng-click="cancel()">CANCELAR</div>
 
 
       <div class="booking-form list padding-left padding-right stable-bg" ng-show="showForm">

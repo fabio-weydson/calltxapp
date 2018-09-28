@@ -113,6 +113,7 @@ angular.module('ion-google-autocomplete')
       autocompleteService.getPlacePredictions({
         input: input,
         types: ["address"], 
+          strictBounds: true,
         componentRestrictions: countryCode ? { country: countryCode } : undefined
       }, function(result, status) {
           

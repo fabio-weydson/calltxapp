@@ -9771,7 +9771,9 @@ a {
   margin: 0; }
 
 .circle {
-  border-radius: 50%; }
+  border-radius: 50%;
+  border: 3px solid #FFF;
+  box-sizing: border-box; }
 
 .padding-20 {
   padding: 20px; }
@@ -9800,6 +9802,12 @@ a {
 .facebook-color {
   background: #4C66A4; }
 
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
 .menu-left {
   background: #1b1f24; }
   .menu-left img.profile-picture {
@@ -9814,7 +9822,12 @@ a {
     border: none;
     font-weight: bold; }
   .menu-left .big {
-    font-size: 40px; }
+    font-size: 40px;
+    display: block; }
+
+.menu-open .menu-left .big {
+  -webkit-animation: spin 0.5s linear;
+  animation-iteration-count: 1; }
 
 .align-center {
   display: flex;
@@ -9893,7 +9906,11 @@ ion-modal-view#modal_sugest .list {
   background: #f8f8f8;
   box-shadow: 1px -5px 15px #CCC;
   color: #CCC; }
-  .booking-info .button {
+  .booking-info .col-50 {
+    padding: 0; }
+  .booking-info .button.cancel {
+    margin: 0; }
+  .booking-info .button.book {
     display: inline-block;
     line-height: 30px;
     font-weight: bold;
@@ -9903,7 +9920,7 @@ ion-modal-view#modal_sugest .list {
     text-indent: 35px;
     position: relative;
     border-radius: 0; }
-    .booking-info .button:before {
+    .booking-info .button.book:before {
       content: " ";
       height: 0;
       width: 0;
@@ -10010,7 +10027,7 @@ ion-modal-view#modal_sugest .list {
   box-shadow: 0px 0px 5px #9a9999; }
 
 .driver-top {
-  height: 30%;
+  height: 26%;
   padding-top: 15%; }
   .driver-top > span {
     font-size: 1.2em; }
@@ -10027,12 +10044,30 @@ ion-modal-view#modal_sugest .list {
       width: 120px;
       height: 120px; }
   .driver-info .driver-plate {
-    margin-top: 40px; }
-  .driver-info .button {
+    margin-top: 20px; }
+    .driver-info .driver-plate .col {
+      border: 1px solid #dfdcd8;
+      border-radius: 7px;
+      margin: 0 5px;
+      max-width: 35%;
+      background-color: #f1f1f1;
+      text-align: left; }
+    .driver-info .driver-plate .veiculo {
+      background: #f1f1f1 url("../img/taxi.png") no-repeat;
+      background-size: 111px;
+      background-position: 100px -10px;
+      text-align: left;
+      max-width: 60% !important;
+      width: 200px; }
+  .driver-info .driver-opt {
     position: absolute;
     bottom: 0;
-    width: 90%;
-    margin-left: 5%; }
+    width: 100%;
+    padding: 0 10px; }
+    .driver-info .driver-opt .button {
+      width: 100%;
+      margin: 0;
+      display: block; }
 
 .tracking-info {
   padding-left: 66px;
@@ -10043,13 +10078,11 @@ ion-modal-view#modal_sugest .list {
     margin-top: 5px;
     width: 54px;
     height: 54px; }
-  .tracking-info .item-content {
-    padding-right: 80px; }
-    .tracking-info .item-content .action-icons {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 2.5em; }
+  .tracking-info .item-content .driver {
+    float: left; }
+  .tracking-info .item-content .action-icons {
+    float: right;
+    font-size: 3em; }
 
 .feedback-form textarea {
   width: 100%;
