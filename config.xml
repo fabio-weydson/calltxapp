@@ -21,6 +21,8 @@
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
     <feature name="http://api.phonegap.com/1.0/geolocation" />
+    <icon src="icon.png" />
+
     <platform name="android">
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
