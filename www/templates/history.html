@@ -9,11 +9,11 @@
     <ion-list>
       <ion-item class="item-icon-right" ng-repeat="record in records">
         <div>
-          <div class="bold">{{ record.time }}</div>
-          <div>Origim: {{ record.from }}</div>
+          <div class="bold">{{ record.time | datetime}}</div>
+          <div>Origem: {{ record.from }}</div>
           <div>Destino: {{ record.to }}</div>
         </div>
-        <i class="icon ion-android-star-outline"></i>
+       
       </ion-item>
     </ion-list>
   </ion-content>

@@ -36,7 +36,7 @@
 
       <!-- Center content -->
       <ion-side-menu-content edge-drag-threshold="" drag-content="false" >
-        <ion-nav-bar class="bar-transparent" align-title="center">
+        <ion-nav-bar class="bar-calm" align-title="center">
           <!-- Back button -->
           <ion-nav-back-button>
             
@@ -55,21 +55,26 @@
       </ion-side-menu-content>
 
       <!-- Left menu -->
-      <ion-side-menu side="left">
+      <ion-side-menu side="left" ng-controller="ProfileCtrl">
         <ion-content>
 
           <!-- User profile -->
           <div class="calm-bg text-center padding">
-            <a ui-sref="profile">
-              <img class="profile-picture circle" menu-close="" src="img/thumb/adam.jpg">
-              <h4 class="light">José Alberto</h4>
-            </a>
+            <div >
+              <img class="profile-picture circle" ui-sref="profile" src="{{ user.profile_picture }}">
+              <h4 class="light" ui-sref="profile">{{user.name}}</h4>
+              <h4 class="my_locations dark" >
+                <i ng-click="navega('home')" class="icon ion-home"></i>
+                <i  ng-click="navega('trabalho')" class="icon ion-briefcase"></i>
+                <i ng-click="navega('outro')" class="icon ion-location"></i>
+              </h4>
+            </div>
           </div>
 
           <!-- Menu -->
           <div class="list" menu-close="">
             <div class="item" ui-sref="home">
-              Home
+              Pedir um taxi
             </div>
 
             <div class="item" ui-sref="history">

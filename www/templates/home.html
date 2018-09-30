@@ -2,8 +2,12 @@
   This template loads for the 'home' state (app.js)
   Show list of shortcuts to other screens
 -->
-<ion-view view-title="CallTaxi" ng-init="init()" >
-  <ion-content scroll="false" has-header="false">
+<ion-view view-title="CallTaxi" ng-init="init()" class="home" hide-nav-bar="true">
+    <div class="bar bar-header bar-transparent">
+        <button class="button button-icon button-clear ion-navicon"  menu-toggle="left"></button>
+
+      </div>
+  <ion-content scroll="false" >
     <!-- Show map here -->
     <div id="map" ng-style="{height: mapHeight + 'px'}"></div>
 
@@ -14,14 +18,14 @@
         <i class="icon ion-person"></i>
         <span class="label gray">Ponto de partida</span>
         <div class="bold">{{departue.name}}</div>
-        <span>{{ departue.formatted_address }}</span>
+        <span class="address">{{ departue.formatted_address }}</span>
       </div>
       <div class="item destination item-icon-left" ng-click="mudaDestino()">
           <i class="icon ion-ios-location"></i>
         <span class="label gray">Destino</span>
         <div class="bold" ng-if="destination.formatted_address">{{destination.name}}</div>
         <div class="talic" ng-if="!destination.formatted_address">{{destination.name}}</div>
-        <span>{{ destination.formatted_address }}</span>
+        <span class="address">{{ destination.formatted_address }}</span>
       </div>
     </div>
 

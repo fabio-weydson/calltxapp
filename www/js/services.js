@@ -107,27 +107,9 @@ angular.module('starter.services', [])
     var trips = [
       {
         id: 1,
-        from: 'Royal City',
-        to: 'Vietnam - France hospital',
-        time: '2016-01-02'
-      },
-      {
-        id: 2,
-        from: 'BigC',
-        to: 'Phao Dai Lang',
-        time: '2015-12-11'
-      },
-      {
-        id: 3,
-        from: 'Royal City',
-        to: '784 Lang',
-        time: '2015-11-10'
-      },
-      {
-        id: 4,
-        from: 'Royal City',
-        to: 'Vietnam - France hospital',
-        time: '2015-11-10'
+        from: 'Rua João Assis, 442',
+        to: 'Banco do Brasil, centro',
+        time: '2018-01-02 10:22:00'
       }
     ];
 
@@ -142,24 +124,10 @@ angular.module('starter.services', [])
   var notifications = [
     {
       id: 1,
-      title: "New price from Jan 2016",
+      title: "Você foi qualificado",
       content: "",
-      createdAt: "2016-02-14 12:00:00",
+      createdAt: "2018-02-14 12:00:00",
       read: true
-    },
-    {
-      id: 2,
-      title: "New version 1.1.1",
-      content: "",
-      createdAt: "2016-02-13 12:00:00",
-      read: false
-    },
-    {
-      id: 3,
-      title: "New version 1.1.0",
-      content: "",
-      createdAt: "2016-02-12 12:00:00",
-      read: false
     }
   ];
 

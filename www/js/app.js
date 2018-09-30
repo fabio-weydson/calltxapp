@@ -127,4 +127,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','i
     // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/home');
 
+})
+.filter('datetime', function($filter)
+{
+ return function(input)
+ {
+  if(input == null){ return ""; } 
+
+  var _date = $filter('date')(new Date(input),
+                              'dd/MM/yyyy - HH:mm');
+
+  return _date.toUpperCase();
+
+ };
 });

@@ -9745,7 +9745,7 @@ a.button {
     background: rgba(0, 0, 0, 0.1);
     left: 5px; }
 
-.scroll-content {
+.bar-transparent + .scroll-content {
   top: 0 !important; }
 
 a {
@@ -9810,6 +9810,17 @@ a {
 
 .menu-left {
   background: #1b1f24; }
+  .menu-left .my_locations i {
+    border: 1px solid;
+    border-radius: 50px;
+    width: 30px;
+    padding: 5px;
+    display: inline-block;
+    font-size: 20px;
+    height: 30px;
+    color: #f5f5f5;
+    margin: 0 5px;
+    line-height: 10px; }
   .menu-left img.profile-picture {
     width: 7em;
     height: 7em;
@@ -9844,7 +9855,7 @@ a {
 #map {
   width: 100%;
   min-height: 100%;
-  background: #e5e5e5 url("https://www.gatetheatre.ie/wp-content/themes/gate/images/ripple.gif") center no-repeat; }
+  background: #e5e5e5 url("../img/ripple.gif") center no-repeat; }
 
 ion-modal-view#modal_sugest .list {
   top: 44px; }
@@ -9954,23 +9965,26 @@ ion-modal-view#modal_sugest .list {
       width: inherit; }
 
 .logo {
-  margin: 20px auto 0;
-  padding: 0.25em 0.5em 0.25em 0.27em;
-  width: 1.5em;
-  border-radius: 10%;
-  font-size: 3em; }
+  margin: 20px auto 0; }
 
 .login-bg {
-  background: url("../img/bg2.jpg") no-repeat center;
-  background-size: 100% 100%; }
+  background: url("../img/bg.jpg") no-repeat center;
+  background-size: auto 100%;
+  background-position: center; }
   .login-bg .scroll {
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center; }
+    .login-bg .scroll .slide-in-up {
+      bottom: -40% !important; }
     .login-bg .scroll .login-content {
       min-width: 86%;
-      max-width: 90%; }
+      max-width: 90%;
+      bottom: 10%;
+      position: absolute;
+      width: 100%;
+      transition: 1s; }
       .login-bg .scroll .login-content .light-bg .item-input {
         margin: 0;
         padding-left: 0;
@@ -10009,6 +10023,18 @@ ion-modal-view#modal_sugest .list {
 
 .finding-bg {
   background: url("../img/bg-map.jpg") center no-repeat; }
+
+.rating-stars {
+  unicode-bidi: bidi-override;
+  direction: rtl; }
+
+.rating-stars > i {
+  display: inline-block;
+  position: relative; }
+
+.rating-stars > i:hover:before,
+.rating-stars > i:hover ~ i:before {
+  color: #11c1f3; }
 
 .location-animation {
   margin: 0 auto;
@@ -10086,12 +10112,30 @@ ion-modal-view#modal_sugest .list {
 
 .feedback-form textarea {
   width: 100%;
-  height: 240px;
+  height: 200px;
   padding: 5px;
   background: #EEE; }
 
 .user-profile {
-  padding: 30px 10px; }
+  padding: 10px 10px; }
   .user-profile .profile-picture {
-    width: 80px;
-    height: 80px; }
+    width: 40%;
+    height: 40%; }
+
+.item {
+  border-color: #ddd;
+  background-color: #fff;
+  color: #444;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: -1px;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 14px; }
+
+.address {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block; }

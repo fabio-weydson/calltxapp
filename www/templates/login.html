@@ -1,19 +1,17 @@
 <ion-view view-title="Login" hide-nav-bar="true" class="login-bg">
   <ion-content class="login-bg">
 
-    <div class="login-content">
+    <div class="login-content" ng-class="{'slide-in-up' : !exibeLogin}">
 
       <div class="light-bg">
 
         <!-- Logo -->
         <div class="padding text-center">
-          <div class="logo balanced-bg">
-            <i class=" light icon-sedan"></i>
+          <div class="logo light-bg">
+              <img width="100%" src="img/logo.png"/>
           </div>
-          <h2 class="dark">
-            CallTaxi
-          </h2>
-          <p class="dark">Seu taxi prático</p>
+
+          <p class="dark bold">Seu taxi prático</p>
         </div>
 
         <!-- Login form -->
@@ -24,11 +22,12 @@
           </label>
           <label class="item item-input">
             <i class="ion-ios-locked-outline light icon-label"></i>
-            <input type="password" placeholder="Senha">
+            <input type="text" placeholder="Código">
           </label>
+          <label class="dark bold" ng-if="error">Não recebeu o código? <a href="" class="balanced">Clique aqui</a></label>
         </div>
         <div class="padding">
-          <button class="button button-block button-balanced" ui-sref="home">
+          <button class="button button-block button-balanced" ng-click="login()">
             Entrar
           </button>
         </div>
@@ -40,11 +39,9 @@
       <!-- Other links -->
       <div class="row">
 
-        <div class="col">
-          <span class="light">Esqueceu sua senha?</span>
-        </div>
+       
         <div class="col text-right">
-          <a ui-sref="register" class="light">Primeira vez aqui? <span class="balanced">Cadastrar</span></a>
+          <a ui-sref="register" class="light">Quero me <span class="balanced">Cadastrar</span></a>
         </div>
 
       </div>

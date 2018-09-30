@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 // Home controller
 .controller('HomeCtrl', function($scope, $state, $rootScope, $ionicPopup, $timeout) {
-
+    
     $scope.stars = [0, 0, 0, 0, 0];
     $rootScope.pos = {};    
     $scope.drive_tta = '3 minutos'; 
@@ -13,8 +13,13 @@ angular.module('starter.controllers', [])
         $rootScope.driver_active = false;
         $rootScope.tracking = false;
         // go to tracking state
-        location.reload();
+        $state.reload() 
     };
+
+
+    $scope.rate = function(value){
+        console.log(value);
+    }
 
     $scope.default_places = function(){
         $rootScope.departue = {
@@ -167,6 +172,8 @@ angular.module('starter.controllers', [])
     if(($rootScope.departue.LatLng)&&($rootScope.destination.LatLng)) {
         calcRoute();
       }
+  } else {
+      console.log('cancela rota');
   }
  
 
@@ -221,6 +228,9 @@ angular.module('starter.controllers', [])
   
     $scope.directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
+            for (var i = 0; i < $scope.markers.length; i++) {
+                $scope.markers[i].setMap(null);
+            }
           $scope.directionsDisplay.setDirections(response);
           var leg = response.routes[ 0 ].legs[ 0 ];
           new google.maps.Marker({position:leg.start_location, map:$scope.map, icon:'img/bluedot-icon.png'});
@@ -234,19 +244,15 @@ angular.module('starter.controllers', [])
     
 }
     $scope.$on('$ionicView.enter', function(){
-        console.log($rootScope.tracking)
         if($rootScope.tracking==true) {
             $timeout(function(){
-                console.log('sadsad')
               $scope.showRating();
+              
             },5000)
-            }
-       
-    /* if($rootScope.tracking==true){
-            var driver_position = new google.maps.LatLng($rootScope.driver_active.location);
-            console.log(driver_position);
-            new google.maps.Marker({position:driver_position, map:$scope.map, icon:'img/driver-icon.png'});
-        } */
+        } else {
+            
+        }
+    
     });
   function getUserLocation(){
      
@@ -260,7 +266,6 @@ angular.module('starter.controllers', [])
            initialize($rootScope.pos);
            
          },function (error) {
-            console.log(error.message)
             $scope.my_location = false;
             alert("Não foi possivel obter sua localização. Certifique-se de ligar seu GPS.")
             $rootScope.pos = {
@@ -349,7 +354,7 @@ angular.module('starter.controllers', [])
     // An elaborate, custom popup
     var myPopup = $ionicPopup.show({
       templateUrl: 'templates/popup-rating.html',
-      title: 'Obrigado!',
+      title: 'Você chegou!',
       scope: $scope,
       buttons: [
         {
@@ -449,7 +454,6 @@ angular.module('starter.controllers', [])
           distance: 0
         }
         Places.add($rootScope.destination);
-        console.log($rootScope.destination);
       } 
     }
     //console.log(location)
@@ -461,20 +465,6 @@ angular.module('starter.controllers', [])
 
   // list recent places
   $scope.recentPlaces = Places.recent();
-})
-
-// Payment Method Controller
-.controller('PaymentMethodCtrl', function($scope, $state) {
-  // default value
-  $scope.choice = 'A';
-
-  // change payment method
-  $scope.changeMethod = function (method) {
-    // add your code here
-
-    // return to main state
-    $state.go('home');
-  }
 })
 
 // Finding controller
@@ -515,9 +505,7 @@ angular.module('starter.controllers', [])
     $rootScope.driver_active = false;
     $rootScope.tracking = false;
     // go to tracking state
-    $state.go('home', null, {
-        location: 'replace'
-    })
+    $state.go('home');
     };
 })
 
@@ -538,20 +526,47 @@ angular.module('starter.controllers', [])
 
 // Profile controller
 .controller('ProfileCtrl', function($scope) {
+    $scope.navega = function(local){
+        alert("Você ainda não cadastrou seus locais favoritos");
+    }
+  
  // user data
     $scope.user = {
-      name: "Adam Lambert",
-      profile_picture: "img/thumb/adam.jpg",
-      phone: "+84941727190",
-      email: "success.ddt@gmail.com"
+      name: "Carlos Machado",
+      profile_picture: "img/default-avatar.png",
+      phone: "+31 9 8862 6564",
+      email: "calltaxi@calltaxi.com.br",
+      user_addresses: {
+        home:{
+            formatted_address: 'Rua das Flores, 321',
+            lat:'',
+            lng: ''
+        },
+        work:{
+            formatted_address: 'Rua Benjamin Araújo, 44',
+            lat:'',
+            lng: ''
+        },
+        other:{
+            formatted_address: '',
+            lat:'',
+            lng: ''
+        }
+      }
     }
 })
 
 // Authentication controller
 // Put your login, register functions here
-.controller('AuthCtrl', function($scope, $ionicHistory) {
+.controller('AuthCtrl', function($scope, $state, $ionicHistory,$timeout) {
+    $timeout(function(){
+        $scope.exibeLogin = true;
+    },2000)
   // hide back butotn in next view
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
+  $scope.login = function(){
+      $state.go("home");
+  }
 })

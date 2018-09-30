@@ -2,13 +2,15 @@
   This template loads for the 'support' state (app.js)
   Show contact form
 -->
-<ion-view view-title="Support">
+<ion-view view-title="Suporte">
   <ion-content scroll="false">
+      <p class="padding">Teve algum problema ou dificuldade durante o uso do nosso serviço ou aplicativo? Envie-nos uma mensagem.</p>
+
     <div class="feedback-form padding">
-      <textarea name="feed_back" ng-model="feed_back" placeholder="Type your feedback here"></textarea>
-      <button class="button button-block button-balanced">SEND</button>
-      <div class="text-center">OR</div>
-      <button class="button button-block button-dark">CALL US</button>
+      <textarea name="feed_back" ng-model="feed_back" placeholder="Descreva aqui"></textarea>
+      <button class="button button-block button-balanced">ENVIAR</button>
+      <div class="text-center">Ou pode nos ligar</div>
+      <button class="button button-block button-dark icon-left ion-ios-telephone">LIGAR</button>
     </div>
   </ion-content>`
 </ion-view>
